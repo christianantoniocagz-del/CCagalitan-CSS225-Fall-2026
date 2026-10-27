@@ -1,0 +1,51 @@
+# Slice the list starting at x's index, and grab 3 items
+# (start_index + 3 is exclusive, so it takes exactly 3 elements)
+numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 1. Get dynamic input from the user
+while numbers:
+
+    try:
+        x = int(input("Enter starting number (0-9): "))
+        print("Starting number:", x)
+        direction = input("Enter direction (forward/backward): ").strip().lower()
+    except ValueError:
+        print("Please enter a valid number.")
+        exit()
+
+    count = int(input("How many jumps? "))
+
+    try:
+        # Determine the correct index based on direction to skip 'x'
+        if direction == "forward":
+            start_idx = numbers.index(x + 1)
+        elif direction == "backward":
+            start_idx = numbers.index(x - 1)
+        else:
+            start_idx = None
+
+        if start_idx is not None:
+            print("Start index in list:", start_idx)
+    except ValueError:
+        print(f"The next number in the {direction} direction is out of bounds or not in the list.")
+        continue
+
+    # 2. Process based on the input direction
+    if direction == "forward":
+        result = numbers[start_idx: start_idx + count]
+    elif direction == "backward":
+        end_idx = start_idx - count
+        print("Calculated end index:", end_idx)
+
+        # Check if end_idx goes below 0 to prevent accidental wrap-around slicing bugs
+        if end_idx < -1:
+            end_idx = None  # 'None' tells the slice to go all the way to the beginning
+
+        result = numbers[start_idx: end_idx: -1]
+    else:
+        print("Invalid direction! Please type 'forward' or 'backward'.")
+        result = []
+
+    # 3. Print the results
+    for num in result:
+        print(num)
