@@ -1,0 +1,43 @@
+# A standard Rubik's Cube has 6 colors: 
+# White (W), Yellow (Y), Green (G), Blue (B), Red (R), Orange (O)
+
+rubiks_cube = {
+    "Top":    [['W', 'W', 'W'],
+               ['W', 'W', 'W'],
+               ['W', 'W', 'W']],
+    
+    "Bottom": [['Y', 'Y', 'Y'],
+               ['Y', 'Y', 'Y'],
+               ['Y', 'Y', 'Y']],
+    
+    "Front":  [['G', 'G', 'G'],
+               ['G', 'G', 'G'],
+               ['G', 'G', 'G']],
+    
+    "Back":   [['B', 'B', 'B'],
+               ['B', 'B', 'B'],
+               ['B', 'B', 'B']],
+    
+    "Left":   [['O', 'O', 'O'],
+               ['O', 'O', 'O'],
+               ['O', 'O', 'O']],
+    
+    "Right":  [['R', 'R', 'R'],
+               ['R', 'R', 'R'],
+               ['R', 'R', 'R']]
+}
+
+# Helper function to print a specific face
+def print_face(face_name):
+    print(f"--- {face_name} Face ---")
+    for row in rubiks_cube[face_name]:
+        print(" ".join(row))
+    print()
+
+# Example: Accessing a specific sticker
+# Top face, middle row, right column
+sticker = rubiks_cube["Top"][1][2] 
+
+# Print out a couple of faces to see the layout
+print_face("Front")
+print_face("Top")
